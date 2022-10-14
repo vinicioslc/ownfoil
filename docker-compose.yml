@@ -2,13 +2,16 @@ version: "3"
 
 services:
   ownfoil:
-    container_name: ownfoil
-    image: a1ex4/ownfoil
+    container_name: localfoil
+    build:
+      context: .
+    restart: unless-stopped
+    image: myownfoil:latest
     volumes:
-      - /your/game/directory:/games
+      - /mnt/usb1/ownfoil/games:/games
       # Uncomment if you want to edit and persist the app configuration
-      # - ./app:/app
+      # - /mnt/usb1/ownfoil/app:/app
       # Uncomment to setup basic auth
-      # - ./nginx:/etc/nginx
+      # - /mnt/usb1/ownfoil/nginx:/etc/nginx
     ports:
-      - "8000:80"
+      - 8000:80
